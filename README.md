@@ -40,12 +40,15 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] What is the purpose of using _sessions_?
 
+Session based authentication is one in which the user state is stored on the server’s memory.   
+
 - [ ] What does bcrypt do to help us store passwords in a secure manner.
+Bcrypt is a password hashing function. Used to protect client login. 
 
 - [ ] What does bcrypt do to slow down attackers?
-
+The ideal way is to use bcrypt is hash the password with a salt then bcrypt then encrypt the hash part with null-IV CBC-CTS with AES on an HSM
 - [ ] What are the three parts of the JSON Web Token?
-
+Header, Payload, and Verify Signature
 ## Minimum Viable Product
 
 Implement an User Authentication System. Hash user's passwords before saving them to the database. Use `JSON Web Tokens` or `Sessions and Cookies` to persist authentication across requests.

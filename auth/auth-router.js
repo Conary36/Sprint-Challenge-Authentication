@@ -1,7 +1,9 @@
-const bcrypt = require('bcrypt.js')
+const bcrypt = require('bcrypt');
 const router = require('express').Router();
 
-const Users = require("../users/jokes-model.js");
+const Users = require("../jokes/jokes-model.js");
+const jwt = require('jsonwebtoken');
+const secrets = require("../config/secrets.js");
 
 router.post('/register', (req, res) => {
   // implement registration
@@ -52,5 +54,16 @@ router.get("/logout", (req, res) => {
     }
   });
 });
+
+function generateToken(user) {
+  const payload = {
+    subject: user.id,
+    username: user.username,
+  };
+  const options = {
+    expiresIn: "2h",
+  };
+  return jwt.sign(payload, secrets.jwtSecret, options);
+}
 
 module.exports = router;
